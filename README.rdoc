@@ -1,6 +1,8 @@
 = ethernet
 
-Description goes here.
+A Ruby Gem Library for Ethernet Communication
+
+This project is a low-level ethernet communication rubygems library. Its initial intension is to set up a communication API between the FPGA chip and the server for MIT's Trusted Computing Secure Storage project http://projects.csail.mit.edu/tc/. 
 
 == Contributing to ethernet
  
@@ -12,8 +14,12 @@ Description goes here.
 * Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
 * Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
 
+== Author
+
+HaoQi Li haoqili@mit.edu
+
 == Copyright
 
-Copyright (c) 2011 haoqili@mit.edu. See LICENSE.txt for
-further details.
+Copyright (c) 2011 Massachusetts Institute of Technology. 
+See LICENSE.txt for further details.
 

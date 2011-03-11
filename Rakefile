@@ -15,10 +15,10 @@ Jeweler::Tasks.new do |gem|
   gem.name = "ethernet"
   gem.homepage = "http://github.com/haoqili/ethernet"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{A ruby gem library for ethernet communication.}
+  gem.description = %Q{This project is a low-level ethernet communication rubygems library.}
   gem.email = "haoqili@mit.edu"
-  gem.authors = ["haoqili@mit.edu"]
+  gem.authors = ["HaoQi Li"]
   # Include your dependencies below. Runtime dependencies are required when using your gem,
   # and development dependencies are only needed for development (ie running rake tasks, tests, etc)
   #  gem.add_runtime_dependency 'jabber4r', '> 0.1'
