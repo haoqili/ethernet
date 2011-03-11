@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
     "LICENSE.txt",
     "README.rdoc",
     "Rakefile",
+    "ethernet.gemspec",
     "lib/ethernet.rb",
     "spec/ethernet_spec.rb",
     "spec/spec_helper.rb"
