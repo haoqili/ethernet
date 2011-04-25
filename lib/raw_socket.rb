@@ -1,8 +1,14 @@
 # Copied from github.com/pwnall/ether_shell/lib/ether_shell/raw_socket.rb
+# Basically the same to scratchpad's raw_ethernet
+#   here and ether_shell = scratchpad's equivalent
+#   eth_device = if_name
+#   set_socket_eth_device() = set_socket_interface()
+#   self.mac() = self.get_interface_mac()
+
 require 'socket'
 
 # :nodoc: namespace
-module EtherShell
+module Ethernet # changed from EtherShell
 
 # Low-level socket creation functionality.
 module RawSocket
@@ -30,7 +36,7 @@ module RawSocket
       ifreq = [eth_device].pack 'a32'
       # 0x8927 is SIOCGIFHWADDR in /usr/include/bits/ioctls.h
       socket.ioctl 0x8927, ifreq
-      ifreq[18, 6]
+      ifreq[18, 6] #in scratchpad's raw_ethernet, then says .unpack('H*').first
     else
       raise "Unsupported platform #{RUBY_PLATFORM}"
     end
@@ -98,8 +104,8 @@ module RawSocket
     end
     private :htons
   end
-end # module EtherShell::RawSocket
+end # module Ethernet::RawSocket
 
-end # namespace EtherShell
+end # namespace Ethernet
 
 

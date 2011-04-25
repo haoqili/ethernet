@@ -1,10 +1,11 @@
 # copied from github.com/pwnall/ether_shell/spec/ether_shell/raw_socket_spec.rb
+#:%s/EtherShell/Ethernet/g
 
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper') #I edited this original
 
 describe 'RawSocket' do
   let(:eth_device) { 'eth0' }
-  let(:mac) { EtherShell::RawSocket.mac eth_device }
+  let(:mac) { Ethernet::RawSocket.mac eth_device }
   
   describe 'mac' do
     let(:golden_mac) do
@@ -24,7 +25,7 @@ describe 'RawSocket' do
   describe 'socket' do
     let(:eth_type) { 0x88B7 }
     
-    before { @socket = EtherShell::RawSocket.socket eth_device }
+    before { @socket = Ethernet::RawSocket.socket eth_device }
     after { @socket.close }
     
     it 'should be able to receive data' do

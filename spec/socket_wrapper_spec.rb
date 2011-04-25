@@ -1,11 +1,13 @@
 # copied from github.com/pwnall/ether_shell/spec/ether_shell/socket_wrapper_spec.rb, with :%s/HighSocket/SocktWrapper/g
+# :%s/HighSocket/SocketWrapper/g
+# :%s/EtherShell/Ethernet/g
 
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper') # edited this line
 
 describe 'SocketWrapper' do
   let(:eth_device) { 'eth0' }
   let(:eth_type) { 0x0800 }
-  let(:mac) { EtherShell::RawSocket.mac eth_device }
+  let(:mac) { Ethernet::RawSocket.mac eth_device }
   let(:dest_mac) { "\x00\x11\x22\x33\x44\x55" }
   let(:bcast_mac) { "\xff" * 6 }
   
@@ -20,7 +22,7 @@ describe 'SocketWrapper' do
   end
 
   describe 'on eth0' do
-    before { @socket = EtherShell::SocketWrapper.new eth_device, eth_type }
+    before { @socket = Ethernet::SocketWrapper.new eth_device, eth_type }
     after { @socket.close }
 
     it_should_behave_like 'a real socket'
@@ -28,8 +30,8 @@ describe 'SocketWrapper' do
   
   describe 'from raw socket' do
     before do
-      raw_socket = EtherShell::RawSocket.socket eth_device, eth_type
-      @socket = EtherShell::SocketWrapper.new raw_socket, eth_type, mac
+      raw_socket = Ethernet::RawSocket.socket eth_device, eth_type
+      @socket = Ethernet::SocketWrapper.new raw_socket, eth_type, mac
     end
     after { @socket.close }
 
@@ -45,7 +47,7 @@ describe 'SocketWrapper' do
         [mac, dest_mac, [eth_type].pack('n'), 'Correct'].join,
       ])
     end
-    let(:socket) { EtherShell::SocketWrapper.new socket_stub, eth_type, mac }
+    let(:socket) { Ethernet::SocketWrapper.new socket_stub, eth_type, mac }
     
     shared_examples_for 'after a small send call' do
       it 'should send a single packet' do

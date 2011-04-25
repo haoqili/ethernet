@@ -1,10 +1,10 @@
 # copied from github.com/pwnall/ether_shell/lib/ether_shell/high_socket.rb
 
 # :nodoc: namespace
-module EtherShell
+module Ethernet # changed from EtherShell
 
 # Wraps an Ethernet socket and abstracts away the Ethernet II frame.
-class SocketWrapper
+class SocketWrapper #changed from HihSocket
   # Creates a wrapper around a raw Ethernet socket.
   #
   # Args:
@@ -119,6 +119,6 @@ class SocketWrapper
     raise "Invalid MAC address" unless mac_address.length == 6
   end
   private :check_mac
-end # class EtherShell::SocketWrapper
+end # class Ethernet::SocketWrapper
 
-end # namespace EtherShell 
+end # namespace Ethernet

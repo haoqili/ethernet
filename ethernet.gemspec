@@ -12,6 +12,7 @@ Gem::Specification.new do |s|
   s.date = %q{2011-03-11}
   s.description = %q{This project is a low-level ethernet communication rubygems library.}
   s.email = %q{haoqili@mit.edu}
+  s.executables = ["ethernet_ping"]
   s.extra_rdoc_files = [
     "LICENSE.txt",
     "README.rdoc"
