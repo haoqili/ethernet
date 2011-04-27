@@ -37,6 +37,8 @@ module RawSocket
       # 0x8927 is SIOCGIFHWADDR in /usr/include/bits/ioctls.h
       socket.ioctl 0x8927, ifreq
       ifreq[18, 6] #in scratchpad's raw_ethernet, then says .unpack('H*').first
+                   # because raw socket should return raw data
+                   # leaving higher layers for presentation issues
     else
       raise "Unsupported platform #{RUBY_PLATFORM}"
     end

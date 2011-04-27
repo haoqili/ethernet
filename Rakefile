@@ -24,6 +24,7 @@ Jeweler::Tasks.new do |gem|
   #  gem.add_runtime_dependency 'jabber4r', '> 0.1'
   #  gem.add_development_dependency 'rspec', '> 1.2.3'
   gem.add_runtime_dependency "eventmachine", ">=0.12.10"
+  gem.executables = ["ethernet_ping"]
 end
 Jeweler::RubygemsDotOrgTasks.new
 
