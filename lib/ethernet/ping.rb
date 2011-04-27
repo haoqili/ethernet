@@ -63,8 +63,7 @@ end  # module Ethernet::PingServer
 class PingClient
   def initialize(eth_device, ether_type, destination_mac)
     @socket = Ethernet::RawSocket.socket eth_device, ether_type
-    
-    @source_mac = [Ethernet::RawSocket.mac(eth_device)].pack('H*')[0, 6]
+    @source_mac = [Ethernet::RawSocket.mac(eth_device).unpack('H*').first].pack('H*')[0, 6]
     @dest_mac = [destination_mac].pack('H*')[0, 6]
     @ether_type = [ether_type].pack('n')    
   end
@@ -80,7 +79,7 @@ class PingClient
     data = data.clone
     # Pad data to have at least 64 bytes.
     data += "\0" * (64 - data.length) if data.length < 64
-  
+ 
     ping_packet = @dest_mac + @source_mac + @ether_type + data
     @socket.send ping_packet, 0
 

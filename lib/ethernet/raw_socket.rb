@@ -38,7 +38,7 @@ module RawSocket
       socket.ioctl 0x8927, ifreq
       ifreq[18, 6] #in scratchpad's raw_ethernet, then says .unpack('H*').first
                    # because raw socket should return raw data
-                   # leaving higher layers for presentation issues
+                   # leaving higher layers (like ping.rb) for presentation issues
     else
       raise "Unsupported platform #{RUBY_PLATFORM}"
     end
