@@ -1,7 +1,7 @@
 # copied from github.com/pwnall/ether_shell/spec/ether_shell/raw_socket_spec.rb
 #:%s/EtherShell/Ethernet/g
 
-require File.expand_path(File.dirname(__FILE__) + '/spec_helper') #I edited this original
+require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe 'RawSocket' do
   let(:eth_device) { 'eth0' }

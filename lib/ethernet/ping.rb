@@ -2,6 +2,8 @@
 # changes see raw_socket.rb
 # :%s/if_name/eth_device/g
 # .get_interface_mac() --> .mac()
+# Ethernet.socket --> Ethernet::RawSocket.socket
+# Ethernet.mac --> Ethernet::RawSocket.mac
 
 require 'eventmachine'
 
@@ -53,16 +55,16 @@ class PingServer
   end
   
   def initialize(eth_device, ether_type)
-    @socket = Ethernet.socket eth_device, ether_type
+    @socket = Ethernet::RawSocket.socket eth_device, ether_type
   end
 end  # module Ethernet::PingServer
   
 # Ping utility 
 class PingClient
   def initialize(eth_device, ether_type, destination_mac)
-    @socket = Ethernet.socket eth_device, ether_type
+    @socket = Ethernet::RawSocket.socket eth_device, ether_type
     
-    @source_mac = [Ethernet.mac(eth_device)].pack('H*')[0, 6]
+    @source_mac = [Ethernet::RawSocket.mac(eth_device)].pack('H*')[0, 6]
     @dest_mac = [destination_mac].pack('H*')[0, 6]
     @ether_type = [ether_type].pack('n')    
   end

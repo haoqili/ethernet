@@ -2,7 +2,7 @@
 # :%s/HighSocket/SocketWrapper/g
 # :%s/EtherShell/Ethernet/g
 
-require File.expand_path(File.dirname(__FILE__) + '/spec_helper') # edited this line
+require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe 'SocketWrapper' do
   let(:eth_device) { 'eth0' }
