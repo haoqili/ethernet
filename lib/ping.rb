@@ -55,7 +55,7 @@ class PingServer
   def initialize(eth_device, ether_type)
     @socket = Ethernet.socket eth_device, ether_type
   end
-end  # module Scratchpad::Ethernet::PingServer
+end  # module Ethernet::PingServer
   
 # Ping utility 
 class PingClient
@@ -87,8 +87,8 @@ class PingClient
     
     response == response_packet
   end
-end  # module Scratchpad::Ethernet::PingClient
+end  # module Ethernet::PingClient
 
-end  # namespace Scratchpad::Ethernet
+end  # namespace Ethernet
 
 # end  # namespace Scratchpad

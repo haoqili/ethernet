@@ -1,4 +1,7 @@
+#:%s/high_socket/socket_wrapper/gc # haoqi changed
+
 # :nodoc: namespace
+
 module Ethernet #from EtherShell
 
 # Provides the Ethernet shell DSL.
@@ -45,10 +48,10 @@ module ShellDsl
   # Connects this shell to a pre-created socket
   #
   # Args:
-  #   high_socket:: socket that behaves like an Ethernet::SocketWrapper
-  def socket(high_socket)
+  #   socket_wrapper:: socket that behaves like an Ethernet::SocketWrapper
+  def socket(socket_wrapper)
     raise "Already connected. did you forget to call disconnect?" if @_socket
-    @_socket = high_socket
+    @_socket = socket_wrapper
     print "Connected directly to socket\n" if @_verbose
     Ethernet::ShellDsl.nothing
   end
