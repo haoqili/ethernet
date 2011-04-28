@@ -6,6 +6,7 @@
 #   self.mac() = self.get_interface_mac()
 
 require 'socket'
+require 'system/getifaddrs' # for listing
 
 # :nodoc: namespace
 module Ethernet # changed from EtherShell
@@ -43,6 +44,31 @@ module RawSocket
       raise "Unsupported platform #{RUBY_PLATFORM}"
     end
   end
+
+  # returns a symbols array of all network devices
+  def self.list_all_devices()
+    case RUBY_PLATFORM
+    when /linux/ #TODO: test to see if works on MacOS as well 
+      devicehash = System.get_ifaddrs # {:eth0=>{:inet_addr=>"18.248.7.89", :netmask=>"18.248.7.89"}, :vmnet1=>{:inet_addr=>"172.16.76.1", :netmask=>"172.16.76.1"}}
+      devicehash.keys
+    end 
+  end 
+
+  # returns a hash of all network devices => MAC Address
+  def self.list_all_devices_macaddr()
+    case RUBY_PLATFORM
+    when /linux/ 
+      devices = self.list_all_devices
+      device_macaddrs = {}
+   
+      devices.each do |eth_device|
+        device_macaddrs[eth_device] = self.mac(eth_device.to_s).unpack('H*')[0]
+      end 
+      device_macaddrs
+    end 
+  end 
+
+
 
   class <<self
     # Sets the Ethernet interface and protocol type for a socket.

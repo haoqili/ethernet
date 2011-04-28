@@ -5,8 +5,6 @@
 # Ethernet.socket --> Ethernet::RawSocket.socket
 # Ethernet.mac --> Ethernet::RawSocket.mac
 
-require 'eventmachine'
-
 # :nodoc: namespace # module Scratchpad
 
 # :nodoc: namespace
@@ -29,11 +27,6 @@ class PingServer
     end
   end
 
-  # Hooks the responder into EventMachine.
-  def hook_em
-    EventMachine.attach @socket, Connection    
-  end
-  
   class ConnectionWrapper
     include Connection
     

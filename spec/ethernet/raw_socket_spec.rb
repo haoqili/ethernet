@@ -41,4 +41,17 @@ describe 'RawSocket' do
       @socket.recv(8192).should_not be_empty
     end
   end
+
+  describe 'testing listing all network devices' do
+     it 'should list the devices' do
+       device_macaddrs = Ethernet::RawSocket.list_all_devices_macaddr()
+       device_macaddrs.each do |key, value|
+         puts "\nDevice is: "
+         puts key.to_s
+         puts "MAC Addrs: "
+         puts value
+         puts "\n"
+       end 
+     end 
+  end 
 end
