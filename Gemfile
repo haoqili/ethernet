@@ -2,7 +2,9 @@ source "http://rubygems.org"
 # Add dependencies required to use your gem here.
 # Example:
 #   gem "activesupport", ">= 2.3.5"
-  gem "system-getifaddrs", "~> 0.1.1"
+
+# only get system-getifaddrs if it's linux
+  gem "system-getifaddrs", "~> 0.1.1", :group => :linux
 
 # Add dependencies to develop your gem here.
 # Include everything needed to run rake, tests, features, etc.
