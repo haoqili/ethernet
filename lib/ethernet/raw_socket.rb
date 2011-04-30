@@ -44,7 +44,7 @@ module RawSocket
       ifreq[18, 6] #in scratchpad's raw_ethernet, then says .unpack('H*').first
                    # because raw socket should return raw data
                    # leaving higher layers (like ping.rb) for presentation issues
-    when /win32/ # see if socket works in windows :P try it
+    when /i386-mingw32/ # see if socket works in windows :P try it
       # /usr/include/net/if.h, structure ifreq
       ifreq = [eth_device].pack 'a32'
       # 0x8927 is SIOCGIFHWADDR in /usr/include/bits/ioctls.h
