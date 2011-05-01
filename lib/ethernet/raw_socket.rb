@@ -129,8 +129,8 @@ module RawSocket
       case RUBY_PLATFORM
       when /linux/
         3 # cat /usr/include/linux/if_ether.h | grep ETH_P_ALL
-      when /i386-mingw32/ # see if socket works in windows :P try it
-        3
+      when /i386-mingw32/
+        ANY # random shot since Win32/Src/getaddrinfo.c:{ PF_INET, SOCK_RAW, ANY, NULL, 0x05 }
       else
         raise "Unsupported platform #{RUBY_PLATFORM}"
       end
