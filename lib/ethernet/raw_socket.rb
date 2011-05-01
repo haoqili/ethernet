@@ -128,7 +128,7 @@ module RawSocket
     def all_ethernet_protocols
       case RUBY_PLATFORM
       when /linux/
-        3
+        3 # cat /usr/include/linux/if_ether.h | grep ETH_P_ALL
       when /i386-mingw32/ # see if socket works in windows :P try it
         3
       else
@@ -144,6 +144,8 @@ module RawSocket
         17 # cat /usr/include/bits/socket.h | grep PF_PACKET
       when /darwin/
         18 # cat /usr/include/sys/socket.h | grep AF_LINK
+      when /i386-mingw32/
+        18 # winsock.h | grep AF_LINK http://research.microsoft.com/en-us/um/redmond/projects/invisible/include/winsock.h.htm
       else
         raise "Unsupported platform #{RUBY_PLATFORM}"
       end
