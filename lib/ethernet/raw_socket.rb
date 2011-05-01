@@ -145,7 +145,8 @@ module RawSocket
       when /darwin/
         18 # cat /usr/include/sys/socket.h | grep AF_LINK
       when /i386-mingw32/
-        18 # winsock.h | grep AF_LINK http://research.microsoft.com/en-us/um/redmond/projects/invisible/include/winsock.h.htm
+        #18 # winsock.h | grep AF_LINK http://research.microsoft.com/en-us/um/redmond/projects/invisible/include/winsock.h.htm
+        17 #please break so that we know it's htons(ANY) that's the problem
       else
         raise "Unsupported platform #{RUBY_PLATFORM}"
       end
