@@ -90,6 +90,12 @@ module RawSocket
         socket_address = [raw_address_family, htons(ether_type), if_number,
                           0xFFFF, 0, 0, ""].pack 'SSISCCa8'
         socket.bind socket_address
+      when /i386-mingw32/ # see if socket works in windows :P try it
+        if_number = get_interface_number eth_device
+        # struct sockaddr_ll in /usr/include/linux/if_packet.h
+        socket_address = [raw_address_family, htons(ether_type), if_number,
+                          0xFFFF, 0, 0, ""].pack 'SSISCCa8'
+        socket.bind socket_address
       else
         raise "Unsupported platform #{RUBY_PLATFORM}"
       end
@@ -106,6 +112,12 @@ module RawSocket
         # 0x8933 is SIOCGIFINDEX in /usr/include/bits/ioctls.h
         socket.ioctl 0x8933, ifreq
         ifreq[16, 4].unpack('I').first
+      when /i386-mingw32/ # see if socket works in windows :P try it
+        # /usr/include/net/if.h, structure ifreq
+        ifreq = [eth_device].pack 'a32'
+        # 0x8933 is SIOCGIFINDEX in /usr/include/bits/ioctls.h
+        socket.ioctl 0x8933, ifreq
+        ifreq[16, 4].unpack('I').first
       else
         raise "Unsupported platform #{RUBY_PLATFORM}"
       end
@@ -116,6 +128,8 @@ module RawSocket
     def all_ethernet_protocols
       case RUBY_PLATFORM
       when /linux/
+        3
+      when /i386-mingw32/ # see if socket works in windows :P try it
         3
       else
         raise "Unsupported platform #{RUBY_PLATFORM}"
