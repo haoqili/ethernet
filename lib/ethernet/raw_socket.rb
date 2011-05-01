@@ -9,8 +9,6 @@ require 'socket'
 case RUBY_PLATFORM
   when /linux/
     require 'system/getifaddrs' # for listing
-  else
-    raise "Unsupported platform #{RUBY_PLATFORM}"
 end
 # :nodoc: namespace
 module Ethernet # changed from EtherShell
